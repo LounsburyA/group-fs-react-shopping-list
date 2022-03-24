@@ -17,7 +17,7 @@
 [x] Connect the database to the server w/ pg  
 ### SERVER/CLIENT (Axios)
   
-    [ ] GET request  (initial get on load, and after POST, DELETE, PUT)
+    [ x] GET request  (initial get on load, and after POST, DELETE, PUT)
             -get database "shopping-list"  
     [ ] POST request  
             -add a item to database (submit to database) (add GET)
@@ -34,11 +34,11 @@
 [x] We want to store a list of items to buy in a database, so we can build up our list over a period of time and then go shopping.  
     (rendered to DOM code in components)
     [x] Create input fields:  (ItemForm.jsx)
-        [ ] Item 
-        [ ] Quantity  
-        [ ] Unit  
+        [ x] Item 
+        [ x] Quantity  
+        [x ] Unit  
         Create Buttons: 
-        [ ] Submit (Add To Cart) (ItemForm.jsx Component)
+        [x ] Submit (Add To Cart) (ItemForm.jsx Component)
         [ ] Clear/Reset (ItemList.jsx Component)
         [ ] Buy/Remove (on each Item.jsx Component)
         buy and remove in item comp

@@ -29,6 +29,28 @@ function App() {
 
     //Created function to "fetch data" on initial load
 
+    const handleRemove = (itemToRemove) => {
+        console.log(itemToRemove);
+        axios.delete(`/list/${itemToRemove.id}`)
+            .then((response) => {
+                console.log('Response of delete route', response)
+
+            }).catch(function(error) {
+                console.log('Error in delete:', error)
+            })
+    }
+
+    const handleClear = () => {
+        console.log();
+        axios.delete('/list')
+            .then((response) => {
+                console.log('Response of delete route', response)
+
+            }).catch(function(error) {
+                console.log('Error in delete:', error)
+            })
+    }
+
     const fetchItem = () => {
         axios.get('/list')
             .then((response) => {
@@ -43,6 +65,8 @@ function App() {
     }
 
 
+
+
     return (
         <div className="App">
             <Header />
@@ -53,9 +77,10 @@ function App() {
                 <input type="text" placeholder="Enter unit" />
                 <input type="submit" value="Add to cart!" />
 
-
-
             </form>
+
+            <button onClick={handleRemove}>Remove Item</button>
+            <button onClick={handleClear}>Clear List</button>
             <main>
                 <p>Under Construction...</p>
             </main>

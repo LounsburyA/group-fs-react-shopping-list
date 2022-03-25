@@ -9,7 +9,9 @@ module.exports = router;
 
 router.get('/', (req, res) => {
 
+
     const sqlText = `SELECT * FROM cart ORDER BY name, purchased DESC;`;
+
     pool.query(sqlText)
         .then((result) => {
             console.log(`Got stuff back from the database`, result);
@@ -20,6 +22,7 @@ router.get('/', (req, res) => {
             res.sendStatus(500); // Good server always responds
         })
 })
+
 
 router.post('/', (req, res) => {
     const newItem = req.body.item;
@@ -37,3 +40,42 @@ router.post('/', (req, res) => {
 
 
 })
+
+router.delete('/:id', (req, res) => {
+    console.log('DELETE ', req.params.id);
+    let id = req.params.id;
+
+    const queryText = `
+      DELETE FROM "cart"
+      WHERE "id" = $1;
+    `;
+
+    const values = [id];
+
+    pool.query(queryText, values)
+        .then(result => {
+            res.sendStatus(204);
+        }).catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+
+});
+
+router.delete('/', (req, res) => {
+
+
+    const queryText = `
+      DELETE FROM "cart";
+      `;
+
+    pool.query(queryText )
+        .then(result => {
+            res.sendStatus(204);
+        }).catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+
+});
+

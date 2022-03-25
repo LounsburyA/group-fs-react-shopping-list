@@ -37,6 +37,33 @@ function App() {
 
     //create POST
 
+
+
+    //Created function to "fetch data" on initial load
+
+    const handleRemove = (itemToRemove) => {
+        console.log(itemToRemove);
+        axios.delete(`/list/${itemToRemove.id}`)
+            .then((response) => {
+                console.log('Response of delete route', response)
+
+            }).catch(function(error) {
+                console.log('Error in delete:', error)
+            })
+    }
+
+    const handleClear = () => {
+        console.log();
+        axios.delete('/list')
+            .then((response) => {
+                console.log('Response of delete route', response)
+
+            }).catch(function(error) {
+                console.log('Error in delete:', error)
+            })
+    }
+
+
     const fetchItem = () => {
         axios.get('/list')
             .then((response) => {
@@ -97,11 +124,14 @@ const clearInputFields = () => {
     setNewQuantity(0);
 }
 
+
+
     return (
         <div className="App">
             <Header />
             <form onSubmit={handleSubmit}>
                 <p>Add an item</p>
+
                 <input 
                     type="text" 
                     placeholder="Name of item" 
@@ -117,7 +147,17 @@ const clearInputFields = () => {
                 <input type="submit"
                 value="Add to cart!"
                 />
+
+                <input type="text" placeholder="Name of item" />
+                <input type="number" placeholder="Enter quantity" />
+                <input type="text" placeholder="Enter unit" />
+                <input type="submit" value="Add to cart!" />
+
+
             </form>
+
+            <button onClick={handleRemove}>Remove Item</button>
+            <button onClick={handleClear}>Clear List</button>
             <main>
                 <p>Under Construction...</p>
             </main>
